@@ -99,15 +99,15 @@ class AdminOrderStatusUpdateView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # ✅ Allowed transitions
+        
         allowed_transitions = {
-        "pending": ["paid", "cancelled", "delivered"],  # <-- allow direct deliver
+        "pending": ["paid", "cancelled", "delivered"],  
         "paid": ["shipped"],
         "shipped": ["delivered"],
 }
 
 
-        # ❌ Final states   
+          
         if order.status in ["delivered", "cancelled"]:
             return Response(
                 {"detail": "Final order status cannot be changed"},

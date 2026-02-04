@@ -39,8 +39,8 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name="reviews"
     )
-    order_item = models.OneToOneField(  # Change to OneToOne for unique review per order item
-        "orders.OrderItem",  # Reference to your order app
+    order_item = models.OneToOneField(  
+        "orders.OrderItem",  
         on_delete=models.CASCADE,
         related_name="review",
         null=True,

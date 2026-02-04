@@ -27,11 +27,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
         if not image:
             return None
 
-        # ✅ If image is ImageFieldFile
+        #
         if hasattr(image, "url"):
             url = image.url
         else:
-            # ✅ If image is already a string
+            
             url = image
 
         if request:

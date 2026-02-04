@@ -10,13 +10,13 @@ from rest_framework import status
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
 
-    # LIST CART ITEMS
+    
     def get(self, request):
         cart_items = CartItem.objects.filter(user=request.user).order_by("id")
         serializer = CartItemSerializer(cart_items, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # ADD TO CART
+    
     def post(self, request):
         product_id = request.data.get("product_id")
 
@@ -37,7 +37,7 @@ class CartView(APIView):
         serializer = CartItemSerializer(cart_item)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    # CLEAR CART
+   
     def delete(self, request):
         CartItem.objects.filter(user=request.user).delete()
         return Response({"message": "Cart cleared"},status=status.HTTP_204_NO_CONTENT)
@@ -86,3 +86,9 @@ class CartCountView(APIView):
     def get(self, request):
         count = CartItem.objects.filter(user=request.user).count()
         return Response({"count": count})
+    
+    
+ 
+class sampleView(APIView):
+    def get(self,request):
+        return Response({"message":"ci/cd implimentation"})    

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import mimetypes
+from datetime import timedelta
 
 # Ensure correct MIME types so CSS/JS aren't blocked
 mimetypes.add_type('text/css', '.css', True)
@@ -112,18 +113,21 @@ AUTH_USER_MODEL = 'accounts.User'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Ecommercedb',        
-        'USER': 'postgres',         
-        'PASSWORD': '12345',
-        'HOST': 'localhost',       
-        'PORT': '5432',            
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres.bfphlsqmbyuzwskqbxvz",
+        "PASSWORD": "Visionxdatabas",
+        "HOST": "aws-1-ap-south-1.pooler.supabase.com",
+        "PORT": "6543",
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 
 
-from datetime import timedelta
+
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',

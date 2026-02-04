@@ -9,8 +9,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ReviewSerializer
-from orders.models import Order, OrderItem  # Import your order models
-
+from orders.models import Order, OrderItem  
 from django.shortcuts import get_object_or_404
  
 
@@ -35,8 +34,6 @@ class CategoryViewSet(ModelViewSet):
    
 
 
-# products/views.py
-
 class ProductReviewView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
@@ -55,11 +52,10 @@ class ProductReviewView(APIView):
 
         product = get_object_or_404(Product, id=product_id)
         
-        # Check if user has purchased this product and it's delivered
         order_items = OrderItem.objects.filter(
             order__user=request.user,
             product=product,
-            order__status='delivered'  # Only delivered orders can be reviewed
+            order__status='delivered' 
         )
         
         if not order_items.exists():
@@ -72,7 +68,6 @@ class ProductReviewView(APIView):
                 status=status.HTTP_403_FORBIDDEN
             )
         
-        # Check if user has already reviewed any of their purchased items
         for order_item in order_items:
             if hasattr(order_item, 'review'):
                 return Response(
