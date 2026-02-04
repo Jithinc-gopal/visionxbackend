@@ -15,6 +15,12 @@ import mimetypes
 import os
 from dotenv import load_dotenv
 
+from django.contrib import admin
+
+admin.site.site_header = "VisionX CI/CD Test"
+admin.site.site_title = "VisionX Admin"
+admin.site.index_title = "Welcome to VisionX Admin"
+
 # Ensure correct MIME types so CSS/JS aren't blocked
 mimetypes.add_type('text/css', '.css', True)
 mimetypes.add_type('text/css', '.css', False)
